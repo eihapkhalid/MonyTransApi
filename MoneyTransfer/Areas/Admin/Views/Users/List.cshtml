@@ -1,0 +1,57 @@
+﻿@model List<TbUser>
+
+  <div class="card-body">
+    <div class="row">
+        <div class="table-sorter-wrapper col-lg-12 table-responsive">
+            <a asp-area="admin" asp-controller="Users" asp-action="Edit" type="button" value="New" class="btn btn-gradient-primary btn-rounded btn-fw" >New</a>
+            <table id="order-listing" class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th class="sortStyle">User name<i class="mdi mdi-chevron-down"></i></th>
+                    <th class="sortStyle">Password<i class="mdi mdi-chevron-down"></i></th>
+                    <th class="sortStyle">Email<i class="mdi mdi-chevron-down"></i></th>
+                    <th class="sortStyle">CurrentState<i class="mdi mdi-chevron-down"></i></th>
+                    <th ></th>
+                                  
+                </tr>
+                </thead>
+                <tbody>
+    @{
+        int counter = 0;
+        foreach(var user in Model)
+        {
+            counter++;
+                    <tr>
+                        <td>@counter</td>
+                        <td>@user.Username</td>
+                        <td>@user.Password</td>
+                        <td>@user.Email</td>
+                        <td>@user.CurrentState</td>  
+                        <td>
+                            <a asp-area="admin" asp-controller="Users" asp-action="Edit"   asp-route-userId="@user.UserId "  type="button" value="Edit" class="btn btn-gradient-info btn-rounded btn-fw" >    Edit</a> 
+                            <a asp-area="admin" asp-controller="Users" asp-action="Delete" asp-route-userId="@user.UserId "  type="button" value="Delete" class="btn btn-gradient-danger btn-rounded btn-fw" >Delete</a>
+                        </td>
+                    </tr>
+        }
+    }       
+                 </tbody>
+             </table>
+        </div>    
+    </div>
+ </div>
+
+
+		
+@section Scripts 
+    {
+            <!-- Plugin js for this page -->
+            <script src="~/admin/vendors/datatables.net/jquery.dataTables.js"></script>
+            <script src="~/admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+            <!-- End plugin js for this page -->
+
+            <!-- Custom js for this page -->
+            <script src="~/admin/js/data-table.js"></script>
+            <!-- End custom js for this page -->
+    }
+
