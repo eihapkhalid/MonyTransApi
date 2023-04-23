@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyTransfer", "MoneyTrans
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bl", "Bl\Bl.csproj", "{6568A2C5-066F-480F-BA6B-32D123A83C77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domains", "Domains\Domains.csproj", "{2AD445EE-9283-463A-84ED-75DB3314FA0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domains", "Domains\Domains.csproj", "{2AD445EE-9283-463A-84ED-75DB3314FA0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{6365A3AD-DDAE-4081-8445-AFB4A443FCAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{2AD445EE-9283-463A-84ED-75DB3314FA0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AD445EE-9283-463A-84ED-75DB3314FA0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AD445EE-9283-463A-84ED-75DB3314FA0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6365A3AD-DDAE-4081-8445-AFB4A443FCAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6365A3AD-DDAE-4081-8445-AFB4A443FCAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6365A3AD-DDAE-4081-8445-AFB4A443FCAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6365A3AD-DDAE-4081-8445-AFB4A443FCAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
