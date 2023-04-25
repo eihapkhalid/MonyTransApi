@@ -15,6 +15,22 @@ namespace Bl
             context = ctx;
         }
 
+        #region Get Transaction By ID:
+        public TbFinancialTransaction GetById(int id)
+        {
+            try
+            {
+
+                var contract = context.TbFinancialTransactions.FirstOrDefault(a => a.TransactionId == id);
+                return contract;
+            }
+            catch
+            {
+                return new TbFinancialTransaction();
+            }
+        }
+        #endregion
+
         #region Transaction Function
         public bool Trans(TbFinancialTransaction transaction)
         {

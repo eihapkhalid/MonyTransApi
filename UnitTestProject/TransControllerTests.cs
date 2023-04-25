@@ -9,7 +9,8 @@ namespace UnitTestProject
 
     [TestClass]
     public class TransControllerTests
-        {
+    {
+        #region dependency injection region
             private readonly TransController _controller;
             private readonly Mock<IBusinessLayer<TbUser>> _mockUsersBusinessLayer;
             private readonly Mock<IBusinessLayer<TbFinancialTransaction>> _mockFinancialTransactionBusinessLayer;
@@ -20,90 +21,102 @@ namespace UnitTestProject
                 _mockUsersBusinessLayer = new Mock<IBusinessLayer<TbUser>>();
                 _mockFinancialTransactionBusinessLayer = new Mock<IBusinessLayer<TbFinancialTransaction>>();
                 _mockVwTransWacountDetailBusinessLayer = new Mock<IBusinessLayer<VwTransWacountDetail>>();
-                _controller = new TransController(
-                    _mockUsersBusinessLayer.Object,
-                    _mockFinancialTransactionBusinessLayer.Object,
-                    _mockVwTransWacountDetailBusinessLayer.Object);
+                _controller = new TransController
+                    (
+                        _mockUsersBusinessLayer.Object,
+                        _mockFinancialTransactionBusinessLayer.Object,
+                        _mockVwTransWacountDetailBusinessLayer.Object
+                    );
             }
+        #endregion
 
-            [TestMethod]
-            public void GetAllUsers_ReturnsListOfUsers()
-            {
-                // Arrange
-                var expectedUsers = new List<TbUser>
+        [TestMethod]
+        #region GetAllUsers
+        public void GetAllUsers_ReturnsListOfUsers()
+        {
+            // Arrange
+            var expectedUsers = new List<TbUser>
                     {
-                        new TbUser { UserId = 1, Username = "User1" },
-                        new TbUser { UserId = 2, Username = "User2" }
+                        new TbUser { UserId = 1, Username = "User1", Password="123", Email="eihap@gmail.com", CurrentState = 1 },
+                        new TbUser { UserId = 2, Username = "User2", Password="777", Email="omerf@gmail.com", CurrentState = 1 }
                     };
-                _mockUsersBusinessLayer.Setup(b => b.GetAll()).Returns(expectedUsers);
+            _mockUsersBusinessLayer.Setup(b => b.GetAll()).Returns(expectedUsers);
+            // Act
+            var result = _controller.Get();
 
-                // Act
-                var result = _controller.Get();
+            // Assert
+            Assert.AreEqual(expectedUsers, result);
+        } 
+        #endregion
 
-                // Assert
-                Assert.AreEqual(expectedUsers, result);
-            }
+        [TestMethod]
+        #region GetUserById
+        public void GetUserById_ReturnsUser()
+        {
+            // Arrange
+            var userId = 1;
+            var expectedUser = new TbUser { UserId = userId, Username = "User1", Password = "123", Email = "eihap@gmail.com", CurrentState = 1 };
+            _mockUsersBusinessLayer.Setup(b => b.GetById(userId)).Returns(expectedUser);
 
-            [TestMethod]
-            public void GetUserById_ReturnsUser()
-            {
-                // Arrange
-                var userId = 1;
-                var expectedUser = new TbUser { UserId = userId, Username = "User1" };
-                _mockUsersBusinessLayer.Setup(b => b.GetById(userId)).Returns(expectedUser);
+            // Act
+            var result = _controller.Get(userId);
 
-                // Act
-                var result = _controller.Get(userId);
+            // Assert
+            Assert.AreEqual(expectedUser, result);
+        } 
+        #endregion
 
-                // Assert
-                Assert.AreEqual(expectedUser, result);
-            }
-
-            [TestMethod]
-            public void GetAllTrans_ReturnsListOfTransactions()
-            {
-                // Arrange
-                var expectedTransactions = new List<VwTransWacountDetail>
+        [TestMethod]
+        #region GetAllTrans
+        public void GetAllTrans_ReturnsListOfTransactions()
+        {
+            // Arrange
+            var expectedTransactions = new List<VwTransWacountDetail>
                     {
-                        new VwTransWacountDetail { SuserId = 1, SaccountBalance = 100 },
-                        new VwTransWacountDetail { SuserId = 2, SaccountBalance = 200 }
+                        new VwTransWacountDetail { SuserId = 1, RuserId= 2, TransactionId = 3, SaccountBalance = 100, SenderAccountNumber = "125412514254", ReceiverAccountNumber="564874", TransactionAmount=500, TransactionDate= DateTime.Now, SaccountNumber = "125412514254", RaccountNumber="564874", RaccountBalance=120 },
+                        new VwTransWacountDetail { SuserId = 1, RuserId= 5, TransactionId = 20, SaccountBalance = 10, SenderAccountNumber = "425857527575", ReceiverAccountNumber="757864", TransactionAmount=300, TransactionDate= DateTime.Now, SaccountNumber = "125412514254", RaccountNumber="564874", RaccountBalance=120  }
                     };
-                _mockVwTransWacountDetailBusinessLayer.Setup(b => b.GetAll()).Returns(expectedTransactions);
+            _mockVwTransWacountDetailBusinessLayer.Setup(b => b.GetAll()).Returns(expectedTransactions);
 
-                // Act
-                var result = _controller.GetAllTrans();
+            // Act
+            var result = _controller.GetAllTrans();
 
-                // Assert
-                Assert.AreEqual(expectedTransactions, result);
-            }
+            // Assert
+            Assert.AreEqual(expectedTransactions, result);
+        } 
+        #endregion
 
-            [TestMethod]
-            public void GetTransByID_ReturnsTransaction()
-            {
-                // Arrange
-                var transactionId = 1;
-                var expectedTransaction = new VwTransWacountDetail { SuserId = transactionId, SaccountBalance = 100 };
-                _mockVwTransWacountDetailBusinessLayer.Setup(b => b.GetById(transactionId)).Returns(expectedTransaction);
+        [TestMethod]
+        #region GetTransByID
+        public void GetTransByID_ReturnsTransaction()
+        {
+            // Arrange
+            var transactionId = 1;
+            var expectedTransaction = new TbFinancialTransaction { TransactionId = transactionId, TransactionAmount = 100 };
+            _mockFinancialTransactionBusinessLayer.Setup(b => b.GetById(transactionId)).Returns(expectedTransaction);
 
-                // Act
-                var result = _controller.GetTransID(transactionId);
+            // Act
+            var result = _controller.GetTransID(transactionId);
 
-                // Assert
-                Assert.AreEqual(expectedTransaction, result);
-            }
+            // Assert
+            Assert.AreEqual(expectedTransaction, result);
+        } 
+        #endregion
 
-            [TestMethod]
-            public void Post_AddsNewUser()
-            {
-                // Arrange
-                var newUser = new TbUser { UserId = 1, Username = "User1" };
+        [TestMethod]
+        #region AddsNewUser
+        public void Post_AddsNewUser()
+        {
+            // Arrange
+            var newUser = new TbUser { UserId = 1, Username = "User1", Password = "123", Email = "eihap@gmail.com", CurrentState = 1 };
 
-                // Act
-                _controller.Post(newUser);
+            // Act
+            _controller.Post(newUser);
 
-                // Assert
-                _mockUsersBusinessLayer.Verify(b => b.Save(newUser), Times.Once);
-            }
+            // Assert
+            _mockUsersBusinessLayer.Verify(b => b.Save(newUser), Times.Once);
+        } 
+        #endregion
 
     }
 }

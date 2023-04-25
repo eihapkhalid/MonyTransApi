@@ -56,9 +56,9 @@ namespace MoneyTransfer.ApiControllers
         #region Get All Trans By Id: api/<TransController>/GetAllTrans/2
         [HttpGet("{id}")]
         [Route("GetTransID/{id}")]
-        public VwTransWacountDetail GetTransID(int id)
+        public TbFinancialTransaction GetTransID(int id)
         {
-            return oClsVwTransWacountDetails.GetById(id);
+            return oClsFinancialTransaction.GetById(id);
         }
         #endregion
 
