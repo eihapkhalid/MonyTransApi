@@ -14,7 +14,7 @@
     <p>Moving on to the user management web application controller.</p>
     <p>This controller is responsible for handling HTTP requests related to managing users, and it is defined in the UsersController class. The controller is decorated with an attribute that specifies its area, and it also uses a business layer interface that is injected into its constructor.</p>
     <p>The UsersController has several methods for retrieving, editing, and deleting users. These methods use the IBusinessLayer&lt;TbUser&gt; interface to perform database operations on the TbUser table.</p>
-    <p>Finally, let's look at the unit tests.</p>
+    <p>Finally, let's look at the unit tests:</p>
     <p>The unit tests for the financial transaction API controller are defined in the TransControllerTests class. The class uses the Microsoft.VisualStudio.TestTools.UnitTesting and Moq namespaces to define and run tests.</p>
     <p>The tests use a Mock object to simulate the behavior of the business layer interfaces that are used by the TransController class. The tests verify that the controller's methods behave correctly under different scenarios, such as when the database is empty or when an invalid input is provided.</p>
     <p>Overall, this codebase consists of a set of controllers that handle HTTP requests for a web application and an API, and a set of business layer interfaces and implementations that manage database operations. The unit tests ensure that the controllers behave correctly under different scenarios.</p>
