@@ -1,6 +1,6 @@
 <html>
   <body>
-    <p>Sure, I'd be happy to provide a story-like explanation of the code!</p>
+    <p>story-like explanation of the code!</p>
     <p>There are three main parts to this code:</p>
     <ol>
       <li>A controller for an API that manages financial transactions</li>
