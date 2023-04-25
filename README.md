@@ -1,6 +1,17 @@
 <html>
   <head>
     <title>Code Explanation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
+      ol {
+        list-style-type: decimal;
+        margin-left: 2em;
+      }
+    </style>
   </head>
   <body>
     <p>Sure, I'd be happy to provide a story-like explanation of the code!</p>
