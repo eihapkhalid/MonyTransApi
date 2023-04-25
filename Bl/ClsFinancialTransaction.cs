@@ -9,11 +9,13 @@ namespace Bl
 {
     public class ClsFinancialTransaction : IBusinessLayer<TbFinancialTransaction>
     {
+        #region dbcontext configrations:
         MoneyTransferContext context;
         public ClsFinancialTransaction(MoneyTransferContext ctx)
         {
             context = ctx;
-        }
+        } 
+        #endregion
 
         #region Get Transaction By ID:
         public TbFinancialTransaction GetById(int id)
